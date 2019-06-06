@@ -1,0 +1,30 @@
+<div class="card" *ngIf="student$|async as student">
+  <h1 class="card-header">Update student</h1>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="update(form.value)">
+      <div class="form-group">
+        <label>Id</label>
+        <input type="text" class="form-control"
+               [ngModel]="student.id" name="id" readonly>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control"
+               [ngModel]="student.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label>University</label>
+        <input type="text" class="form-control"
+               [ngModel]="student.university" name="university" required>
+      </div>
+      <div class="form-group">
+        <label>Birth year</label>
+        <input type="number" class="form-control"
+               [ngModel]="student.birthYear" name="birthYear" required>
+      </div>
+      <button type="submit" [disabled]="form.invalid || form.pristine">Update student.</button>
+      <button (click)="back()">Back</button>
+    </form>
+  </div>
+</div>
+

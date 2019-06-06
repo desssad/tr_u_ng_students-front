@@ -1,0 +1,8 @@
+<div class="card" *ngIf="student$|async as student">
+  <h1 class="card-header">{{student.name}}</h1>
+  <div class="card-body">ID: {{student.id}}</div>
+  <div class="card-body">Name: {{student.name}}</div>
+  <div class="card-body">University: {{student.university}}</div>
+  <div class="card-body">BirthYear: {{student.birthYear}}</div>
+  <button (click)="back()">Back</button>
+</div>

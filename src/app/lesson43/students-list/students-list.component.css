@@ -1,0 +1,13 @@
+td, th {
+  width: 40%;
+}
+th {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.icons {
+  width: 6%;
+}
+mat-icon {
+  cursor: pointer;
+}

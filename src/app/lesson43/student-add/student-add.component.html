@@ -1,0 +1,50 @@
+<div class="card">
+  <h1 class="card-header">Add student</h1>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="add(form)">
+      <mat-form-field>
+        <input matInput type="text"
+               placeholder="id"
+               ngModel name="id" #stid="ngModel"
+               required>
+<!--        pattern="\+d"-->
+        <mat-error *ngIf="stid.errors?.required">
+          Id is required
+        </mat-error>
+        <mat-error *ngIf="stid.errors?.pattern">
+          Id should contain only digits
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Name"
+               ngModel name="name" required>
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error>
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" placeholder="University" matInput
+               ngModel name="university" required>
+        <mat-icon matSuffix>cast_for_education</mat-icon>
+        <mat-error>
+          University is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" placeholder="Birth Year" matInput
+               ngModel name="birthYear" required>
+        <mat-error>
+          Birth year is required
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" [disabled]="form.invalid">
+        Add student.
+      </button>
+    </form>
+  </div>
+</div>
