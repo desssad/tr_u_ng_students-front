@@ -12,7 +12,10 @@ export class StudentsListComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Student>;
   displayedColumns = ['id', 'name', 'details', 'edit', 'delete'];
-  constructor(private studentService: StudentsService) {}
+
+  constructor(private studentService: StudentsService) {
+  }
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -22,12 +25,12 @@ export class StudentsListComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource<Student>(students);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-    });
+    }, error => alert(error));
   }
 
   remove(id: string) {
     this.studentService.removeStudent(id)
-      .subscribe(() => this.ngOnInit());
+      .subscribe(() => this.ngOnInit(), error => alert(error));
   }
 
   ngOnDestroy(): void {

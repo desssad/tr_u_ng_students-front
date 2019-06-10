@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Student, StudentsService} from '../students.service';
 import {NgForm} from '@angular/forms';
 
@@ -9,13 +9,14 @@ import {NgForm} from '@angular/forms';
 })
 export class StudentAddComponent implements OnInit {
 
-  constructor(private studentService: StudentsService) { }
+  constructor(private studentService: StudentsService) {
+  }
 
   ngOnInit() {
   }
 
   add(form: NgForm) {
-    this.studentService.addStudent(form.value as Student);
-    form.reset();
+    this.studentService.addStudent(form.value as Student)
+      .subscribe(() => form.reset(), error => alert(error));
   }
 }

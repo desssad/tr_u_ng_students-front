@@ -8,7 +8,18 @@ import { StudentsNavigatorComponent } from './students-navigator/students-naviga
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-import {MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {
+  MatButtonToggleModule,
+  MatIconModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule
+} from '@angular/material';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment';
 
 const routes: Routes = [
   {path: 'students/:id', component: StudentDetailsComponent},
@@ -35,7 +46,10 @@ const routes: Routes = [
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonToggleModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   exports: [StudentsNavigatorComponent]
 })

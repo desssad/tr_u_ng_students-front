@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Student, StudentsService} from '../students.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-details',
@@ -13,11 +14,16 @@ export class StudentDetailsComponent implements OnInit {
 
   constructor(private studentService: StudentsService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(param => {
-      this.student$ = this.studentService.getStudent(param.get('id'));
+      this.student$ = this.studentService.getStudent(param.get('id'))
+        .pipe(catchError(error => {
+          alert(error);
+          return throwError(error);
+        }));
     });
   }
 
